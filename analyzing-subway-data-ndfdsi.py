@@ -49,8 +49,8 @@ import matplotlib.pyplot as plt
 def entries_histogram(turnstile_weather):
     
     plt.figure()
-    turnstile_weather['ENTRIESn_hourly'].loc[turnstile_weather.rain == 1].hist(alpha=0.5) # your code here to plot a historgram for hourly entries when it is raining
-    turnstile_weather['ENTRIESn_hourly'].loc[turnstile_weather.rain == 0].hist(alpha=0.5) # your code here to plot a histogram for hourly entries when it is not raining
+    turnstile_weather['ENTRIESn_hourly'].loc[turnstile_weather.rain == 0].hist(alpha=0.5, range=(1000, 9000)) # your code here to plot a historgram for hourly entries when it is raining
+    turnstile_weather['ENTRIESn_hourly'].loc[turnstile_weather.rain == 1].hist(alpha=0.5, range=(1000, 9000)) # your code here to plot a histogram for hourly entries when it is not raining
     #plt.yscale('log')
     plt.xlabel('Entries per Hours')
     plt.legend(('Raining', 'Not Raining'))
@@ -63,5 +63,4 @@ def max_temp_aggregate_by_fog(df):
     return maxFog
 
 
-medias=df.groupby('rain').mean()['ENTRIESn_hourly'].values
-with_rain_mean, without_rain_mean=medias[1], medias[0]
+entries_histogram(df)
